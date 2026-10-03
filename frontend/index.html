@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Agregador</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📥 Download Agregador</h1>
+            <p>Cole uma URL do Instagram, TikTok ou YouTube para baixar as mídias.</p>
+        </header>
+
+        <section class="input-section">
+            <form id="download-form">
+                <input
+                    type="text"
+                    id="url-input"
+                    placeholder="https://www.instagram.com/reel/SEU_SHORTCODE/"
+                    autocomplete="off"
+                    required
+                >
+                <button type="submit" id="download-btn">Baixar</button>
+            </form>
+            <div id="platform-badge" class="badge hidden"></div>
+        </section>
+
+        <section id="status" class="status hidden"></section>
+
+        <section id="results" class="results hidden">
+            <h2>Mídias encontradas</h2>
+            <div id="media-list" class="media-list"></div>
+        </section>
+
+        <section id="platforms-section" class="platforms-section">
+            <h3>Plataformas suportadas</h3>
+            <div id="platforms-list" class="platforms-list"></div>
+        </section>
+
+        <footer>
+            <p>Download Agregador &mdash; Frontend + API de integração</p>
+        </footer>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

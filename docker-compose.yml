@@ -1,0 +1,29 @@
+# Producao local/privada: os dois containers, com proxy /api -> backend.
+#
+# Sobe com:
+#   docker compose up --build -d
+#   (abre em http://localhost)
+services:
+  backend:
+    build: ./backend
+    environment:
+      PORT: '3001'
+      NODE_ENV: production
+      # Ferramentas ja vem na imagem do Dockerfile.
+      YTDLP_PATH: /usr/local/bin/yt-dlp
+      FFMPEG_PATH: /usr/local/bin
+      DENO_PATH: /usr/local/bin/deno
+      # Deve ser MENOR que o proxy_read_timeout do nginx (180s).
+      YTDLP_TIMEOUT_MS: '120000'
+      INSTAGRAM_API_URL: ${INSTAGRAM_API_URL:-https://instagram-api-green.vercel.app}
+    expose:
+      - '3001'
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - '80:80'
+    depends_on:
+      - backend
+    restart: unless-stopped
